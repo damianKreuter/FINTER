@@ -10,7 +10,7 @@ package finter.finter.main;
  * @author Propietario
  */
 
-public class main {
+public class Main {
     public static void main(String[] args){
      
         return;
