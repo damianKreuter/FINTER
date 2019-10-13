@@ -7,6 +7,7 @@ package finter.finter.vistas;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,8 +20,12 @@ public class IngresarDatos extends javax.swing.JFrame {
     /**
      * Creates new form ingresarDatos
      */
-    public IngresarDatos() {
+    private Principal vistaPrincipal;
+    
+    public IngresarDatos(Principal principal) {
         initComponents();
+        vistaPrincipal = principal;
+        comenzar();
     }
 
     /**
@@ -33,25 +38,22 @@ public class IngresarDatos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButtonVolver = new javax.swing.JButton();
         jRadioButtonProgre = new javax.swing.JRadioButton();
         jRadioButtonRegre = new javax.swing.JRadioButton();
         jComboBox_newton_lagrange = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButtonSelecionar = new javax.swing.JButton();
         jSpinnerX = new javax.swing.JSpinner();
         jSpinnerImagen = new javax.swing.JSpinner();
-        jButtonIngresarDatos = new javax.swing.JButton();
+        jButtonIngresarAlgoritmo = new javax.swing.JButton();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
+        jButtonIngresarDatos1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Ingreso de datos");
-
-        jLabel2.setText("Ingreso los datos en la tabla de abajo, aclarando luego con que método se quiera usar para realizar los calculos");
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -61,10 +63,20 @@ public class IngresarDatos extends javax.swing.JFrame {
         });
 
         jRadioButtonProgre.setText("Progresiva");
+        jRadioButtonProgre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonProgreActionPerformed(evt);
+            }
+        });
 
         jRadioButtonRegre.setText("Regresiva");
 
         jComboBox_newton_lagrange.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_newton_lagrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_newton_lagrangeActionPerformed(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel3.setText("Seleccione algoritmo");
@@ -82,17 +94,10 @@ public class IngresarDatos extends javax.swing.JFrame {
         jLabel4.setName(""); // NOI18N
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        jButtonSelecionar.setText("Calcular");
-        jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIngresarAlgoritmo.setText("Ingresar algoritmo"); // NOI18N
+        jButtonIngresarAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSelecionarActionPerformed(evt);
-            }
-        });
-
-        jButtonIngresarDatos.setText("Ingresar par de datos");
-        jButtonIngresarDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIngresarDatosActionPerformed(evt);
+                jButtonIngresarAlgoritmoActionPerformed(evt);
             }
         });
 
@@ -100,74 +105,72 @@ public class IngresarDatos extends javax.swing.JFrame {
 
         label2.setText("imagen (Y)");
 
+        jButtonIngresarDatos1.setText("Ingresar par de datos"); // NOI18N
+        jButtonIngresarDatos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIngresarDatos1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonIngresarDatos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox_newton_lagrange, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonProgre)
+                            .addComponent(jRadioButtonRegre)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(222, 222, 222)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jRadioButtonRegre)
-                                        .addComponent(jRadioButtonProgre)
-                                        .addComponent(jButtonSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                        .addComponent(jComboBox_newton_lagrange, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(26, 26, 26)
+                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinnerX, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jSpinnerImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButtonIngresarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jSpinnerImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerX, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonIngresarAlgoritmo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinnerX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonIngresarDatos))
                 .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSpinnerX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpinnerImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox_newton_lagrange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonProgre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonRegre)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonSelecionar)
-                .addGap(29, 29, 29)
-                .addComponent(jButtonVolver)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jButtonIngresarDatos1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonIngresarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -177,35 +180,41 @@ public class IngresarDatos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
-    private void jButtonIngresarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarDatosActionPerformed
-        int x = (Integer)jSpinnerX.getValue();
-        int y = (Integer)jSpinnerImagen.getValue();
-        DefaultTableModel model =  (DefaultTableModel)tabla_datos.getModel();
-        if(noContieneX(x, model)) {
-            agregarDatosALaTabla(x, y, model);
-        } else {
-            JOptionPane.showMessageDialog(null, x+" ya está presente en la tabla");
-        }
+    private void comenzar(){
+        jComboBox_newton_lagrange.addItem("Lagrange");
+        jComboBox_newton_lagrange.addItem("Newton Gregory");
+        jComboBox_newton_lagrange.setSelectedIndex(1);
         
-    }//GEN-LAST:event_jButtonIngresarDatosActionPerformed
+        jRadioButtonProgre.setSelected(true);
+        jRadioButtonRegre.setSelected(false);
+    }
+    
+    private void jButtonIngresarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarAlgoritmoActionPerformed
 
-    private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        boolean esProgresivo = false;
-        if(jRadioButtonProgre.isSelected()){
-            esProgresivo = true;
-        }
-        Collection<Integer> dominioX = new ArrayList<Integer>();
-        Collection<Integer> imagenY = new ArrayList<Integer>();
-        DefaultTableModel model =  (DefaultTableModel)tabla_datos.getModel();
-        for (int count = 0; count < model.getRowCount(); count++){
-            dominioX.add(Integer.parseInt(model.getValueAt(count, 1).toString()));
-            imagenY.add(Integer.parseInt(model.getValueAt(count, 1).toString()));
-        }
+        String algoritmoAPoner = "";
+        vistaPrincipal.ingresoDeAlgoritmo(algoritmoAPoner);
+        JOptionPane.showMessageDialog(null, "Se actualizó el algoritmo");
+
+    }//GEN-LAST:event_jButtonIngresarAlgoritmoActionPerformed
+
+    private void jRadioButtonProgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonProgreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonProgreActionPerformed
+
+    private void jComboBox_newton_lagrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_newton_lagrangeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_newton_lagrangeActionPerformed
+
+    private void jButtonIngresarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarDatos1ActionPerformed
+         int x = (Integer)jSpinnerX.getValue();
+        int y = (Integer)jSpinnerImagen.getValue();
         
-   //     Calculo c = new Calculo();
-   //     c.realizarCalculo(dominioX, imagenY, esProgresivo);
-        
-    }//GEN-LAST:event_jButtonSelecionarActionPerformed
+        if(!vistaPrincipal.ingresoDeDatos(x, y)) {
+            JOptionPane.showMessageDialog(null, x+" ya está presente en la tabla");
+        } else {
+            JOptionPane.showMessageDialog(null, "Se ingresaron correctamente los datos");
+        }
+    }//GEN-LAST:event_jButtonIngresarDatos1ActionPerformed
 
     private void agregarDatosALaTabla(int x, int y, DefaultTableModel model){
         Object[] row = new Object[2];
@@ -230,7 +239,7 @@ public class IngresarDatos extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void activar() {
+    public void activar(Principal p) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -258,18 +267,17 @@ public class IngresarDatos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresarDatos().setVisible(true);
+                new IngresarDatos(p).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonIngresarDatos;
-    private javax.swing.JButton jButtonSelecionar;
+    private javax.swing.JButton jButtonIngresarAlgoritmo;
+    private javax.swing.JButton jButtonIngresarDatos1;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBox_newton_lagrange;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButtonProgre;

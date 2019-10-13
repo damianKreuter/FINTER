@@ -16,6 +16,5 @@ public class Main {
     public static void main(String[] args){
         Principal vista = new Principal();
         vista.activar();
-        return;
     }
 }

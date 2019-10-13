@@ -5,6 +5,10 @@
  */
 package finter.finter.vistas;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Propietario
@@ -16,6 +20,15 @@ public class Principal extends javax.swing.JPanel {
      */
     public Principal() {
         initComponents();
+        crearTabla();
+    }
+    
+    private void crearTabla(){
+        DefaultTableModel model;
+        model = new javax.swing.table.DefaultTableModel(
+                        new Object [][] {},  
+                        new String [] {"X", "f(X)"});
+        jTablaDeDatos.setModel(model);
     }
 
     /**
@@ -29,6 +42,8 @@ public class Principal extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         label1 = new java.awt.Label();
         jButtonIngresar = new javax.swing.JButton();
         jButtonMostrarPASOS = new javax.swing.JButton();
@@ -36,7 +51,7 @@ public class Principal extends javax.swing.JPanel {
         jButtonAlterarValoresIniciales = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTablaDeDatos = new javax.swing.JTable();
         label2 = new java.awt.Label();
         jLabelAlgoritmoSeleccioando = new javax.swing.JLabel();
 
@@ -52,6 +67,19 @@ public class Principal extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         label1.setText("FINTER");
 
@@ -69,23 +97,28 @@ public class Principal extends javax.swing.JPanel {
         jButtonAlterarValoresIniciales.setText("ALTERAR VALORES INICIALES");
 
         jButton5.setText("FINALIZAR");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaDeDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Dominio", "Imagen"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTablaDeDatos);
 
         label2.setText("Algoritmo seleccionado");
 
-        jLabelAlgoritmoSeleccioando.setText(" ");
+        jLabelAlgoritmoSeleccioando.setText("Lagrange");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,15 +132,15 @@ public class Principal extends javax.swing.JPanel {
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(198, 198, 198))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEspecializarPolinomio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAlterarValoresIniciales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonMostrarPASOS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                        .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonAlterarValoresIniciales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonMostrarPASOS, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEspecializarPolinomio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonIngresar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,10 +156,10 @@ public class Principal extends javax.swing.JPanel {
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelAlgoritmoSeleccioando)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addComponent(jButtonIngresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonMostrarPASOS)
@@ -135,12 +168,55 @@ public class Principal extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAlterarValoresIniciales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(jButton5)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public Collection<Integer> obtenerTodoX(){
+        Collection<Integer> datos = new ArrayList<Integer>();
+        int i;
+        DefaultTableModel model =  (DefaultTableModel)jTablaDeDatos.getModel();
+        for(i=0; i< model.getRowCount();i++){
+            datos.add(Integer.parseInt(model.getValueAt(i, 1).toString()));
+        }
+        return datos;
+    }
+    
+    public String obtenerTipoAlgoritmo(){
+        return jLabelAlgoritmoSeleccioando.getText();
+    }
+    
+    public Collection<Integer> obtenerTodoY(){
+        Collection<Integer> datos = new ArrayList<Integer>();
+        int i;
+        DefaultTableModel model =  (DefaultTableModel)jTablaDeDatos.getModel();
+        for(i=0; i< model.getRowCount();i++){
+            datos.add(Integer.parseInt(model.getValueAt(i, 2).toString()));
+        }
+        return datos;
+    }
+    
+    public void ingresoDeAlgoritmo(String algoritmo){
+        jLabelAlgoritmoSeleccioando.setText(algoritmo);
+    }
+    
+    public boolean ingresoDeDatos(int x, int y){
+        DefaultTableModel model =  (DefaultTableModel)jTablaDeDatos.getModel();
+        int i;
+        for(i=0; i< model.getRowCount();i++){
+            if(Integer.parseInt(model.getValueAt(i, 1).toString()) == x){
+                return false;
+            }
+        }
+        //INGRESO DE NUEVO PAR DE DATOS
+        Object[] row = new Object[4];
+        row[0]=x;
+        row[1]=y;
+        model.addRow(row);
+        //QUIZAS SI SE TIENE GANAS SE ORDENA LA LISTA
+        return true;
+    }
     
     public void activar() {
       //   pedirUser();
@@ -153,10 +229,15 @@ public class Principal extends javax.swing.JPanel {
     
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         
-        IngresarDatos ingresodedatos = new IngresarDatos();
-        ingresodedatos.activar();
+        IngresarDatos ingresodedatos = new IngresarDatos(this);
+        ingresodedatos.activar(this);
         
     }//GEN-LAST:event_jButtonIngresarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -168,6 +249,8 @@ public class Principal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelAlgoritmoSeleccioando;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTablaDeDatos;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private java.awt.Label label1;
