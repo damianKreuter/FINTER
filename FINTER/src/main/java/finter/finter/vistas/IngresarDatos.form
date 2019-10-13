@@ -187,8 +187,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSelecionar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Seleccionar"/>
+        <Property name="text" type="java.lang.String" value="Calcular"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSelecionarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -202,6 +205,7 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null},{null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;X&quot;, &quot;F(x)&quot;&#xa;    }&#xa;)" type="code"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

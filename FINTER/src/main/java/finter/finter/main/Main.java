@@ -5,6 +5,8 @@
  */
 package finter.finter.main;
 
+import finter.finter.vistas.Principal;
+
 /**
  *
  * @author Propietario
@@ -12,7 +14,8 @@ package finter.finter.main;
 
 public class Main {
     public static void main(String[] args){
-     
+        Principal vista = new Principal();
+        vista.activar();
         return;
     }
 }

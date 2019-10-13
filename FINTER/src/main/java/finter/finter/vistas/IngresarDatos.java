@@ -5,6 +5,9 @@
  */
 package finter.finter.vistas;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -81,7 +84,12 @@ public class IngresarDatos extends javax.swing.JFrame {
         jLabel4.setName(""); // NOI18N
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        jButtonSelecionar.setText("Seleccionar");
+        jButtonSelecionar.setText("Calcular");
+        jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionarActionPerformed(evt);
+            }
+        });
 
         tabla_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,6 +99,7 @@ public class IngresarDatos extends javax.swing.JFrame {
                 "X", "F(x)"
             }
         ));
+        tabla_datos.setEnabled(false);
         jScrollPane1.setViewportView(tabla_datos);
 
         jButtonIngresarDatos.setText("Ingresar par de datos");
@@ -190,15 +199,52 @@ public class IngresarDatos extends javax.swing.JFrame {
     private void jButtonIngresarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarDatosActionPerformed
         int x = (Integer)jSpinnerX.getValue();
         int y = (Integer)jSpinnerImagen.getValue();
-        
-        Object[] row = new Object[2];
-        row[0] = x;
-        row[1] = y;
         DefaultTableModel model =  (DefaultTableModel)tabla_datos.getModel();
-        
+        if(noContieneX(x, model)) {
+            agregarDatosALaTabla(x, y, model);
+        } else {
+            JOptionPane.showMessageDialog(null, x+" ya está presente en la tabla");
+        }
         
     }//GEN-LAST:event_jButtonIngresarDatosActionPerformed
 
+    private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
+        boolean esProgresivo = false;
+        if(jRadioButtonProgre.isSelected()){
+            esProgresivo = true;
+        }
+        Collection<Integer> dominioX = new ArrayList<Integer>();
+        Collection<Integer> imagenY = new ArrayList<Integer>();
+        DefaultTableModel model =  (DefaultTableModel)tabla_datos.getModel();
+        for (int count = 0; count < model.getRowCount(); count++){
+            dominioX.add(Integer.parseInt(model.getValueAt(count, 1).toString()));
+            imagenY.add(Integer.parseInt(model.getValueAt(count, 1).toString()));
+        }
+        
+   //     Calculo c = new Calculo();
+   //     c.realizarCalculo(dominioX, imagenY, esProgresivo);
+        
+    }//GEN-LAST:event_jButtonSelecionarActionPerformed
+
+    private void agregarDatosALaTabla(int x, int y, DefaultTableModel model){
+        Object[] row = new Object[2];
+            row[0] = x;
+            row[1] = y;
+            
+        
+            
+    }
+    
+    private boolean noContieneX(int x, DefaultTableModel model){
+        Collection<String> numdata = new ArrayList<String>();
+        for(int count = 1; count <= model.getRowCount(); count++){
+            numdata.add(model.getValueAt(count, 1).toString());
+            if(x == Integer.parseInt(model.getValueAt(count, 1).toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
     
     /**
      * @param args the command line arguments
