@@ -52,10 +52,6 @@ public class Principal2 extends javax.swing.JFrame {
 
         jTablaDeDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
                 "Dominio", "Imagen"
@@ -134,8 +130,8 @@ public class Principal2 extends javax.swing.JFrame {
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
 
-        IngresarDatos ingresodedatos = new IngresarDatos(this);
-        ingresodedatos.activar(this);
+        IngresarDatos ingresodedatos = new IngresarDatos(this, jLabelAlgoritmoSeleccioando.getText());
+        ingresodedatos.activar(this, jLabelAlgoritmoSeleccioando.getText());
 
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
@@ -220,7 +216,7 @@ public class Principal2 extends javax.swing.JFrame {
         DefaultTableModel model =  (DefaultTableModel)jTablaDeDatos.getModel();
         int i;
         for(i=0; i< model.getRowCount();i++){
-            if(Integer.parseInt(model.getValueAt(i, 1).toString()) == x){
+            if(Integer.parseInt(model.getValueAt(i, 0).toString()) == x){
                 return false;
             }
         }
