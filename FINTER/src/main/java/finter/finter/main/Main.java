@@ -5,7 +5,7 @@
  */
 package finter.finter.main;
 
-import finter.finter.vistas.Principal;
+import finter.finter.vistas.Principal2;
 
 /**
  *
@@ -14,7 +14,7 @@ import finter.finter.vistas.Principal;
 
 public class Main {
     public static void main(String[] args){
-        Principal vista = new Principal();
+        Principal2 vista = new Principal2();
         vista.activar();
     }
 }

@@ -20,9 +20,9 @@ public class IngresarDatos extends javax.swing.JFrame {
     /**
      * Creates new form ingresarDatos
      */
-    private Principal vistaPrincipal;
+    private Principal2 vistaPrincipal;
     
-    public IngresarDatos(Principal principal) {
+    public IngresarDatos(Principal2 principal) {
         initComponents();
         vistaPrincipal = principal;
         comenzar();
@@ -239,7 +239,7 @@ public class IngresarDatos extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void activar(Principal p) {
+    public void activar(Principal2 p) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
