@@ -98,7 +98,7 @@ public class Lagrange implements Algoritmo{
         System.out.println("------------Interpolacion de Lagrange-------------");
         System.out.println("--------------------------------------------------");
         
-        this.reportarcoordenadas(xi, fxi);
+//        this.reportarcoordenadas(xi, fxi);
 
         System.out.println("x = "+x);
         System.out.println("");
